@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="entities.User2" table="users">
+    <class name="entities.User" table="users">
         <id name="id" column="id" type="int">
             <generator class="increment"></generator>
         </id>
