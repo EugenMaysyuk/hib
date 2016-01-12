@@ -1,3 +1,4 @@
+import entities.Info;
 import entities.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -15,11 +16,19 @@ public class Main {
             session.beginTransaction();
 
             User user = new User();
-            user.setUsername( "Dmitry" );
+            user.setUsername( "Test" );
             user.setPassword( "12345" );
             user.setAge(23);
 
+            Info info = new Info();
+            info.setBankId( 1 );
+            info.setText1( "text1" );
+            info.setText2( "text2" );
+            info.setText3( "text3" );
+
             session.save( user );
+            session.save( info );
+
             session.getTransaction().commit();
             session.close();
         }

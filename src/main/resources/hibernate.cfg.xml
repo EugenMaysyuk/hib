@@ -10,5 +10,6 @@
         <property name="connection.username">root</property>
         <property name="connection.password">master</property>
         <mapping resource="User.hbm.xml"/>
+        <mapping resource="Info.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>
