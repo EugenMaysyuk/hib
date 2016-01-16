@@ -1,5 +1,7 @@
-import entities.Info;
-import entities.User;
+package com.may;
+
+import com.may.entities.Info;
+import com.may.entities.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;

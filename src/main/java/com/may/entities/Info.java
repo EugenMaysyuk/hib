@@ -1,4 +1,4 @@
-package entities;
+package com.may.entities;
 
 public class Info {
     private int infoId;

@@ -1,4 +1,4 @@
-package entities;
+package com.may.entities;
 
 import java.util.Set;
 

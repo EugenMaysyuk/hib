@@ -4,20 +4,20 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="entities.User" table="user">
+    <class name="com.may.entities.User" table="user">
         <id name="id" column="id" type="int">
             <generator class="native"></generator>
         </id>
         <property name="username" type="java.lang.String" column="username"/>
         <property name="password" type="java.lang.String" column="password"/>
         <property name="age" type="java.lang.Integer" column="age"/>
-        <set name="banks">
+        <!--<set name="banks">
             <subselect>
                 SELECT bank_id, CONCAT(IFNULL(inf.text1, ''), CONCAT(',', IFNULL(inf.text2, ''))) AS BANK_INFO FROM info inf
             </subselect>
             <key column="bank_id"/>
             <element type="string" column="BANK_INFO"/>
-        </set>
+        </set>-->
     </class>
 
 </hibernate-mapping>
