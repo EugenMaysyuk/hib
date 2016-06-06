@@ -15,6 +15,12 @@ CREATE TABLE info
   text3 VARCHAR(256)
 );
 
+CREATE TABLE PERSON
+(
+  ID INTEGER PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  NAME VARCHAR(50),
+  EMAIL VARCHAR(100)
+);
 /* Data */
 
 INSERT INTO hib.user (id, username, password, age) VALUES (1, 'Test', '12345', 23);

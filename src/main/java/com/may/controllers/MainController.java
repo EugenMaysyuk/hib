@@ -1,15 +1,14 @@
 package com.may.controllers;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import com.may.entities.Person;
+import com.may.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.may.entities.Info;
-import com.may.entities.User;
+import java.util.List;
 
 /**
  *  Created by EugenMaysyuk on 1/15/2016.
@@ -19,28 +18,20 @@ import com.may.entities.User;
 public class MainController {
 
     @Autowired
-    public SessionFactory sessionFactory;
+    PersonService personService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String setupForm(ModelMap model) {
+    public String indexHandler(ModelMap model) {
 
-        Session session = sessionFactory.openSession();
+        Person person = new Person();
+        person.setName("Eugen");
+        person.setEmail("eugen@gmail.com");
 
-        User user = new User();
-        user.setUsername( "Test" );
-        user.setPassword( "123456" );
-        user.setAge(23);
+        personService.addPerson(person);
+        System.out.println("Person: " + person + " added successfully");
 
-        Info info = new Info();
-        info.setBankId( 1 );
-        info.setText1( "text1" );
-        info.setText2( "text2" );
-        info.setText3( "text3" );
-
-        session.persist( user );
-        session.persist( info );
-
-        session.close();
+        List<Person> persons = personService.fetchAllPersons();
+        System.out.println("The list of all persons: " + persons);
 
         return "index";
     }
