@@ -3,29 +3,21 @@ package com.may.services;
 import com.may.dao.PersonDao;
 import com.may.entities.Person;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class PersonService {
 
+    @Autowired
     private PersonDao personDao;
 
-    private PersonDao getPersonDao() {
-        return personDao;
+    public void save(Person person) {
+        personDao.save(person);
     }
 
-    @Autowired
-    public void setPersonDao(PersonDao personDao) {
-        this.personDao = personDao;
-    }
-
-    public void addPerson(Person person) {
-        getPersonDao().insert(person);
-    }
-
-    public List<Person> fetchAllPersons() {
-        return getPersonDao().selectAll();
+    public List<Person> retrieveAll() {
+        return personDao.retrieveAll();
     }
 }

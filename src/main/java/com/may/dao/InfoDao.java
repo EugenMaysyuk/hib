@@ -1,6 +1,6 @@
 package com.may.dao;
 
-import com.may.entities.Person;
+import com.may.entities.Info;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,22 +11,22 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-public class PersonDao {
+public class InfoDao {
 
     @Autowired
     private SessionFactory sessionFactory;
 
-    public void save(Person person) {
+    public void save(Info info) {
         Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
-        session.save(person);
+        session.save(info);
         session.getTransaction().commit();
     }
 
-    public List<Person> retrieveAll() {
+    @Transactional(readOnly = true)
+    public List<Info> selectAll() {
         Session session = sessionFactory.getCurrentSession();
-        Criteria criteria = session.createCriteria(Person.class);
-        return (List<Person>) criteria.list();
+        Criteria criteria = session.createCriteria(Info.class);
+        return (List<Info>) criteria.list();
     }
-
 }

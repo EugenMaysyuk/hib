@@ -24,4 +24,4 @@ CREATE TABLE PERSON
 /* Data */
 
 INSERT INTO hib.user (id, username, password, age) VALUES (1, 'Test', '12345', 23);
-INSERT INTO hib.info (info_id, bank_id, text1, text2, text3) VALUES (1, 1, 'text1', 'text2', 'text3');
+INSERT INTO hib.info (infoId, bankId, text1, text2, text3) VALUES (1, 1, 'text1', 'text2', 'text3');

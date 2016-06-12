@@ -1,18 +1,15 @@
 package com.may.controllers;
 
+import com.may.entities.Info;
 import com.may.entities.Person;
+import com.may.services.InfoService;
 import com.may.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.List;
-
-/**
- *  Created by EugenMaysyuk on 1/15/2016.
- */
 @Controller
 @RequestMapping("/")
 public class MainController {
@@ -20,18 +17,34 @@ public class MainController {
     @Autowired
     PersonService personService;
 
+    @Autowired
+    InfoService infoService;
+
     @RequestMapping(method = RequestMethod.GET)
-    public String indexHandler(ModelMap model) {
+    public String indexHandler() {
+        return "index";
+    }
 
+    @RequestMapping(method = RequestMethod.GET, value = "savePerson/{name}/{email}")
+    public String savePerson(@PathVariable String name, @PathVariable String email) {
         Person person = new Person();
-        person.setName("Eugen");
-        person.setEmail("eugen@gmail.com");
+        person.setName(name);
+        person.setEmail(email);
 
-        personService.addPerson(person);
-        System.out.println("Person: " + person + " added successfully");
+        personService.save(person);
 
-        List<Person> persons = personService.fetchAllPersons();
-        System.out.println("The list of all persons: " + persons);
+        return "index";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "saveInfo/{bankId}/{text1}/{text2}/{text3}")
+    public String saveInfo(@PathVariable Integer bankId, @PathVariable String text1,@PathVariable String text2, @PathVariable String text3) {
+        Info info = new Info();
+        info.setBankId(bankId);
+        info.setText1(text1);
+        info.setText2(text2);
+        info.setText3(text3);
+
+        infoService.save(info);
 
         return "index";
     }

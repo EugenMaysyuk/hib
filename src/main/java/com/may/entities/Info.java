@@ -1,6 +1,15 @@
 package com.may.entities;
 
+import org.hibernate.envers.Audited;
+
+import javax.persistence.*;
+
+@Entity
+@Audited
 public class Info {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int infoId;
     private Integer bankId;
     private String text1;
