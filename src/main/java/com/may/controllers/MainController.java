@@ -4,6 +4,7 @@ import com.may.entities.Info;
 import com.may.entities.Person;
 import com.may.services.InfoService;
 import com.may.services.PersonService;
+import com.may.utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,7 @@ public class MainController {
 
     @RequestMapping(method = RequestMethod.GET, value = "savePerson/{name}/{email}")
     public String savePerson(@PathVariable String name, @PathVariable String email) {
+        UserUtils.setCurrentUser("Eugen");
         Person person = new Person();
         person.setName(name);
         person.setEmail(email);
@@ -38,6 +40,7 @@ public class MainController {
 
     @RequestMapping(method = RequestMethod.GET, value = "saveInfo/{bankId}/{text1}/{text2}/{text3}")
     public String saveInfo(@PathVariable Integer bankId, @PathVariable String text1,@PathVariable String text2, @PathVariable String text3) {
+        UserUtils.setCurrentUser("Pavel");
         Info info = new Info();
         info.setBankId(bankId);
         info.setText1(text1);
