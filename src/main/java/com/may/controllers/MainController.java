@@ -2,6 +2,7 @@ package com.may.controllers;
 
 import com.may.entities.Info;
 import com.may.entities.Person;
+import com.may.services.RevisionInfoService;
 import com.may.services.InfoService;
 import com.may.services.PersonService;
 import com.may.utils.UserUtils;
@@ -21,6 +22,9 @@ public class MainController {
     @Autowired
     InfoService infoService;
 
+    @Autowired
+    RevisionInfoService revisionInfoService;
+
     @RequestMapping(method = RequestMethod.GET)
     public String indexHandler() {
         return "index";
@@ -34,6 +38,7 @@ public class MainController {
         person.setEmail(email);
 
         personService.save(person);
+        revisionInfoService.getEntityAtRevision(Person.class, 1);
 
         return "index";
     }
@@ -48,6 +53,7 @@ public class MainController {
         info.setText3(text3);
 
         infoService.save(info);
+        revisionInfoService.getEntityAtRevision(Info.class, 1);
 
         return "index";
     }
